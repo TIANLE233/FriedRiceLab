@@ -2,12 +2,14 @@
 # re parameterize for FMEN
 # Official GitHub: https://github.com/NJU-Jet/FMEN
 # ----------------------------------------------------------------------
+import sys
 from argparse import ArgumentParser
 
 import torch
 import torch.nn.functional as F
 from tqdm import tqdm
 
+sys.path.append('..')
 from archs import fmen_arch
 
 
