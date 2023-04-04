@@ -192,7 +192,7 @@ class FMEN(nn.Module):
         # warm up
         self.warmup = nn.Sequential(
             Conv2d3x3(n_feats, n_feats),
-            HFAB(n_feats, up_blocks[0], mid_feats - 4, attention_expand_ratio)
+            HFAB(n_feats, up_blocks[0], mid_feats - 4, attention_expand_ratio, deploy=deploy)
         )
 
         # define body module
