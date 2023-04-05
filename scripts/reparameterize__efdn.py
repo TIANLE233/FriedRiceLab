@@ -15,7 +15,7 @@ import torch.optim
 import torch.utils.data
 import torch.utils.data.distributed
 
-sys.path.append('..')
+sys.path.append('./')
 from archs.efdn_arch import EFDN
 
 parser = argparse.ArgumentParser(description='EFDN Conversion')

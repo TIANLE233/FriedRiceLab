@@ -180,7 +180,7 @@ class FMEN(nn.Module):
     """
 
     def __init__(self, upscale: int, num_in_ch: int, num_out_ch: int, task: str,
-                 up_blocks=(2, 1, 1, 1, 1), down_blocks=4, n_feats=50, mid_feats=16,
+                 up_blocks, down_blocks=4, n_feats=50, mid_feats=16,
                  backbone_expand_ratio=2, attention_expand_ratio=2, deploy=False):
         super(FMEN, self).__init__()
 
@@ -227,18 +227,14 @@ class FMEN(nn.Module):
         return x
 
 
-def make_model():
-    return FMEN(upscale=4, num_in_ch=3, num_out_ch=3, task='lsr', deploy=True)
-
-
 if __name__ == '__main__':
     def count_parameters(model):
         return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
-    net = FMEN(upscale=4, num_in_ch=3, num_out_ch=3, task='lsr', deploy=False)
+    net = FMEN(upscale=4, num_in_ch=3, num_out_ch=3, task='lsr', up_blocks=[2, 1, 1, 1, 1], deploy=False)
     print(count_parameters(net))
-    net = FMEN(upscale=4, num_in_ch=3, num_out_ch=3, task='lsr', deploy=True)
+    net = FMEN(upscale=4, num_in_ch=3, num_out_ch=3, task='lsr', up_blocks=[2, 1, 1, 1, 1], deploy=True)
     print(count_parameters(net))
 
     data = torch.randn(1, 3, 120, 80)
